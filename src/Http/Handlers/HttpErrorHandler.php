@@ -6,9 +6,7 @@ namespace Microservices\Http\Handlers;
 
 use Fig\Http\Message\StatusCodeInterface;
 use JsonException;
-use Microservices\Exceptions\DomainException;
 use Microservices\Exceptions\HttpException;
-use Microservices\Exceptions\HttpSpecializedException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

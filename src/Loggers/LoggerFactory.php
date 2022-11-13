@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Microservices\Loggers;
 
 use Monolog\Formatter\LineFormatter;
@@ -11,9 +13,6 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Log\LoggerInterface;
 
-/**
- * @psalm-suppress PropertyNotSetInConstructor
- */
 final class LoggerFactory
 {
     private array $handlers;
