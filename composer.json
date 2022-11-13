@@ -1,5 +1,5 @@
 {
-    "name": "mikelooper/php-slim-microservice",
+    "name": "mikelooper/slim-php-microservice",
     "type": "library",
     "description": "A package to create microservices",
     "keywords": ["microservice", "dependency injection", "container", "settings", "psr-11", "psr11", "cache", "log"],
