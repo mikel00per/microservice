@@ -7,4 +7,4 @@ This package has been created to manage the creation of a simple microservice. S
 To use the package you need config the container dependence. You can copy the following files to config your http microservice:
 - config/container.php
 - config/settings.php
-- config/bootstrap.php // File executed by index.php W
+- config/bootstrap.php // File executed by index.php
