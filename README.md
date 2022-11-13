@@ -1,4 +1,4 @@
-# PHP Microservice
+# Slim PHP Microservice
 
 This package has been created to manage the creation of a simple microservice. Slim php was wrapped into MicroserviceSlim, also the package control the cache routes, log errors and handle the correct response.
 
