@@ -1,6 +1,9 @@
 {
-    "name": "mikelooper/php-microservices",
+    "name": "mikelooper/php-slim-microservice",
     "type": "library",
+    "description": "A package to create microservices",
+    "keywords": ["microservice", "dependency injection", "container", "settings", "psr-11", "psr11", "cache", "log"],
+    "homepage": "https://github.com/mikel00per/php-slim-microservice",
     "license": "MIT",
     "autoload": {
         "psr-4": {
