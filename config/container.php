@@ -7,7 +7,6 @@ use Microservices\Http\Handlers\HttpErrorHandler;
 use Microservices\Http\MicroserviceSlim;
 use Microservices\Http\MicroserviceSlimInterface;
 use Microservices\Loggers\LoggerFactory;
-use Monolog\Level;
 use Monolog\Processor\UidProcessor;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
@@ -56,7 +55,7 @@ return [
         $name = $settings->get('logger.name');
         $path = $settings->get('logger.path');
         $fileName = $settings->get('logger.filename');
-        $level = Level::from($settings->get('logger.level'));
+        $level = $settings->get('logger.level');
 
         return (new LoggerFactory($path, $level))
             ->addProcessor(new UidProcessor())
