@@ -8,7 +8,6 @@ use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Level;
 use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Log\LoggerInterface;
@@ -20,7 +19,7 @@ final class LoggerFactory
 
     public function __construct(
         private string $path,
-        private Level $level = Level::Debug,
+        private int $level = 100,
         private ?LoggerInterface $testLogger = null
     ) {
     }
@@ -61,7 +60,7 @@ final class LoggerFactory
         return $this;
     }
 
-    public function addFileHandler(string $filename, Level $level = null): self
+    public function addFileHandler(string $filename, int $level = null): self
     {
         $filename = sprintf('%s/%s', $this->path, $filename);
 
@@ -86,7 +85,7 @@ final class LoggerFactory
         return $this;
     }
 
-    public function addConsoleHandler(Level $level = null): self
+    public function addConsoleHandler(int $level = null): self
     {
         /** @phpstan-ignore-next-line */
         $streamHandler = new StreamHandler('php://output', $level ?? $this->level);

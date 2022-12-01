@@ -86,7 +86,7 @@ class HttpErrorHandler implements ErrorHandlerInterface
         // Detect status code
         $statusCode = StatusCodeInterface::STATUS_INTERNAL_SERVER_ERROR;
         if ($exception instanceof HttpException) {
-            $statusCode = (int) $exception->getCode();
+            $statusCode = $exception->getCode();
         }
 
         $file = basename($exception->getFile());
