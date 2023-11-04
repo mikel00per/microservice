@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Microservices\Loggers;
+namespace Infrastructure\Loggers;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\HandlerInterface;

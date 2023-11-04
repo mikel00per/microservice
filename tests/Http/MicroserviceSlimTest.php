@@ -1,13 +1,13 @@
 <?php
 
-namespace Microservices\Tests\Http;
+namespace Infrastructure\Tests\Http;
 
 use ContainerSettings\Settings;
 use ContainerSettings\SettingsInterface;
 use Exception;
-use Microservices\Http\MicroserviceSlim;
-use Microservices\Http\MicroserviceSlimInterface;
-use Microservices\Tests\Utils\TestCase;
+use Infrastructure\Http\MicroserviceSlim;
+use Infrastructure\Http\MicroserviceSlimInterface;
+use Infrastructure\Tests\Utils\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Selective\TestTrait\Traits\HttpTestTrait;

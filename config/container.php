@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 use ContainerSettings\SettingsInterface;
-use Microservices\Http\Handlers\HttpErrorHandler;
-use Microservices\Http\MicroserviceSlim;
-use Microservices\Http\MicroserviceSlimInterface;
-use Microservices\Loggers\LoggerFactory;
+use Infrastructure\Http\Handlers\HttpErrorHandler;
+use Infrastructure\Http\MicroserviceSlim;
+use Infrastructure\Http\MicroserviceSlimInterface;
+use Infrastructure\Loggers\LoggerFactory;
 use Monolog\Processor\UidProcessor;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;

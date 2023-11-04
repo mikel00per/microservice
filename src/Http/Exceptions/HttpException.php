@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Microservices\Exceptions;
+namespace Infrastructure\Http\Exceptions;
 
 use Slim\Exception\HttpSpecializedException;
 
