@@ -1,6 +1,6 @@
 <?php
 
-namespace Microservices\Tests\Utils;
+namespace Infrastructure\Tests\Utils;
 
 use ContainerSettings\ContainerFactory;
 use Exception;

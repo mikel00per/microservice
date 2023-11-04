@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Microservices\Http;
+namespace Infrastructure\Http;
 
 use ContainerSettings\SettingsInterface;
 use Psr\Container\ContainerExceptionInterface;
