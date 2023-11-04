@@ -1,5 +1,5 @@
 {
-    "name": "mikelooper/slim-php-microservice",
+    "name": "mikelooper/php-slim-microservice",
     "type": "library",
     "description": "A package to create microservices",
     "keywords": ["microservice", "dependency injection", "container", "settings", "psr-11", "psr11", "cache", "log"],
@@ -7,12 +7,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Microservices\\": "src/"
+            "Shared\\Infrastructure\\Slim": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Microservices\\Tests\\": "tests/"
+            "Shared\\Infrastructure\\Slim\\Tests\\": "tests/"
         },
         "classmap": [
             "src/"

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Microservices\Http;
+namespace Shared\Infrastructure\Slim;
 
 use Psr\Container\ContainerInterface;
 use Slim\Interfaces\RouteCollectorProxyInterface;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Microservices\Http\Handlers;
+namespace Shared\Infrastructure\Slim\Handlers;
 
 use Fig\Http\Message\StatusCodeInterface;
+use Shared\Infrastructure\Slim\Exceptions\HttpException;
 use JsonException;
-use Microservices\Exceptions\HttpException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

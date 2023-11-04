@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Microservices\Http\MicroserviceSlimInterface;
-use Microservices\Http\Middlewares\DefaultHeadersMiddleware;
-use Microservices\Http\Middlewares\SessionMiddleware;
+use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
+use Shared\Infrastructure\Slim\Middlewares\DefaultHeadersMiddleware;
+use Shared\Infrastructure\Slim\Middlewares\SessionMiddleware;
 use Slim\Middleware\ErrorMiddleware;
 
 return static function (MicroserviceSlimInterface $microservice) {
