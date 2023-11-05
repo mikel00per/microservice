@@ -5,30 +5,18 @@ namespace Shared\Infrastructure\Slim\Tests;
 use ContainerSettings\Settings;
 use ContainerSettings\SettingsInterface;
 use Exception;
-use Shared\Infrastructure\Slim\MicroserviceSlim;
-use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
-use Infrastructure\Tests\Utils\TestCase;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Selective\TestTrait\Traits\HttpTestTrait;
+use Shared\Infrastructure\Slim\MicroserviceSlim;
+use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
+use Shared\Infrastructure\Slim\Tests\Utils\TestCase;
 
 class MicroserviceSlimTest extends TestCase
 {
     use HttpTestTrait;
 
     private MicroserviceSlim $microservice;
-
-    /**
-     * @throws ContainerExceptionInterface
-     * @throws NotFoundExceptionInterface
-     * @throws Exception
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->microservice = $this->container->get(MicroserviceSlimInterface::class);
-    }
 
     public function testApplicationHasBeenCreated(): void
     {
@@ -49,5 +37,17 @@ class MicroserviceSlimTest extends TestCase
         $response = $this->microservice->handle($request);
 
         $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     * @throws Exception
+     */
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->microservice = $this->container->get(MicroserviceSlimInterface::class);
     }
 }
