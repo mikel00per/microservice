@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use ContainerSettings\ContainerFactory;
-use Infrastructure\Http\MicroserviceSlimInterface;
+use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
 

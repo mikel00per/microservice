@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Loggers;
+namespace Shared\Infrastructure\Slim\Loggers;
 
+use Exception;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\RotatingFileHandler;
@@ -24,6 +25,9 @@ final class LoggerFactory
     ) {
     }
 
+    /**
+     * @throws Exception
+     */
     public function createLogger(string $name = null): LoggerInterface
     {
         if (isset($this->testLogger)) {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Http\Handlers;
+namespace Shared\Infrastructure\Slim\Handlers;
 
 use Fig\Http\Message\StatusCodeInterface;
-use Infrastructure\Http\Exceptions\HttpException;
+use Shared\Infrastructure\Slim\Exceptions\HttpException;
 use JsonException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;

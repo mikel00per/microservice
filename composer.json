@@ -7,12 +7,12 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Infrastructure\\": "src/"
+            "Shared\\Infrastructure\\Slim\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Infrastructure\\Tests\\": "tests/"
+            "Shared\\Infrastructure\\Slim\\Tests\\": "tests/"
         },
         "classmap": [
             "src/"

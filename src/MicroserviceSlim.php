@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Http;
+namespace Shared\Infrastructure\Slim;
 
 use ContainerSettings\SettingsInterface;
 use Psr\Container\ContainerExceptionInterface;

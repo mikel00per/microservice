@@ -1,6 +1,6 @@
 <?php
 
-namespace Infrastructure\Tests\Utils;
+namespace Shared\Infrastructure\Slim\Tests\Utils;
 
 use ContainerSettings\ContainerFactory;
 use Exception;
