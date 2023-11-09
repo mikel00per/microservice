@@ -2,17 +2,17 @@
 
 namespace Shared\Infrastructure\Slim\Tests;
 
-use ContainerSettings\Settings;
-use ContainerSettings\SettingsInterface;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Selective\TestTrait\Traits\HttpTestTrait;
+use Shared\Infrastructure\Settings\Settings;
+use Shared\Infrastructure\Settings\SettingsInterface;
 use Shared\Infrastructure\Slim\MicroserviceSlim;
 use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
 use Shared\Infrastructure\Slim\Tests\Utils\TestCase;
 
-class MicroserviceSlimTest extends TestCase
+final class MicroserviceSlimTest extends TestCase
 {
     use HttpTestTrait;
 
@@ -23,6 +23,10 @@ class MicroserviceSlimTest extends TestCase
         $this->assertInstanceOf(MicroserviceSlim::class, $this->microservice);
     }
 
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
     public function testGetSettings(): void
     {
         $expected = Settings::class;

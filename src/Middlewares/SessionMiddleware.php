@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface as Middleware;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 
-class SessionMiddleware implements Middleware
+final readonly class SessionMiddleware implements Middleware
 {
     public function process(Request $request, RequestHandler $handler): Response
     {

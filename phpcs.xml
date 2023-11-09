@@ -10,6 +10,10 @@
     <!-- inherit rules from: -->
     <rule ref="PSR12"/>
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <rule ref="PSR2">
+        <exclude name="PSR1.Files.SideEffects" />
+    </rule>
+
 
     <!-- Paths to check -->
     <file>src</file>
