@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Shared\Infrastructure\Slim;
 
-use ContainerSettings\SettingsInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
+use Shared\Infrastructure\Settings\SettingsInterface;
 use Slim\App;
 
-class MicroserviceSlim extends App implements MicroserviceSlimInterface
+final class MicroserviceSlim extends App implements MicroserviceSlimInterface
 {
     /**
      * @throws ContainerExceptionInterface

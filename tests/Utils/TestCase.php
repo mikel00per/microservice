@@ -2,11 +2,11 @@
 
 namespace Shared\Infrastructure\Slim\Tests\Utils;
 
-use ContainerSettings\ContainerFactory;
 use Exception;
 use PHPUnit\Framework\TestCase as UnitTestCase;
 use Selective\TestTrait\Traits\ContainerTestTrait;
 use Selective\TestTrait\Traits\MockTestTrait;
+use Shared\Infrastructure\DependencyInjection\ContainerFactory;
 
 class TestCase extends UnitTestCase
 {

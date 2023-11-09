@@ -19,9 +19,9 @@ final class LoggerFactory
     private array $processors;
 
     public function __construct(
-        private string $path,
-        private int $level = 100,
-        private ?LoggerInterface $testLogger = null
+        private readonly string           $path,
+        private readonly int              $level = 100,
+        private readonly ?LoggerInterface $testLogger = null
     ) {
     }
 

@@ -14,7 +14,7 @@ use Psr\Log\LoggerInterface;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Throwable;
 
-class HttpErrorHandler implements ErrorHandlerInterface
+final readonly class HttpErrorHandler implements ErrorHandlerInterface
 {
     /**
      * Constructor

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use ContainerSettings\SettingsInterface;
+use Shared\Infrastructure\Settings\SettingsInterface;
 use Shared\Infrastructure\Slim\Handlers\HttpErrorHandler;
 use Shared\Infrastructure\Slim\MicroserviceSlim;
 use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
