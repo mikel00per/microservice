@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Shared\Infrastructure\Slim\Handlers;
 
 use Fig\Http\Message\StatusCodeInterface;
-use Shared\Infrastructure\Slim\Exceptions\HttpException;
 use JsonException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
+use Shared\Infrastructure\Slim\Exceptions\HttpException;
 use Slim\Interfaces\ErrorHandlerInterface;
 use Throwable;
 
@@ -22,8 +22,7 @@ final readonly class HttpErrorHandler implements ErrorHandlerInterface
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
         private LoggerInterface $logger,
-    ) {
-    }
+    ) {}
 
     /**
      * Invoke.
@@ -47,7 +46,7 @@ final readonly class HttpErrorHandler implements ErrorHandlerInterface
         if ($logErrors) {
             $error = $this->getErrorDetails($exception, $displayErrorDetails);
             $error['method'] = $request->getMethod();
-            $error['url'] = (string)$request->getUri();
+            $error['url'] = (string) $request->getUri();
             $this->logger->error($exception->getMessage(), $error);
         }
 
@@ -56,7 +55,7 @@ final readonly class HttpErrorHandler implements ErrorHandlerInterface
 
         $error = [
             'statusCode' => $statusCode,
-            'error' => $errorData
+            'error' => $errorData,
         ];
 
         $payload = json_encode(

@@ -19,11 +19,10 @@ final class LoggerFactory
     private array $processors = [];
 
     public function __construct(
-        private readonly string           $path,
-        private readonly int              $level = 100,
+        private readonly string $path,
+        private readonly int $level = 100,
         private readonly ?LoggerInterface $testLogger = null
-    ) {
-    }
+    ) {}
 
     /**
      * @throws Exception
@@ -68,21 +67,10 @@ final class LoggerFactory
     {
         $filename = sprintf('%s/%s', $this->path, $filename);
 
-        $rotatingFileHandler = new RotatingFileHandler(
-            $filename,
-            0,
-            $level ?? $this->level,
-            true,
-            0777
-        );
+        $rotatingFileHandler = new RotatingFileHandler($filename, 0, $level ?? $this->level, true, 0777);
 
         // The last "true" here tells monolog to remove empty []'s
-        $rotatingFileHandler->setFormatter(new LineFormatter(
-            null,
-            null,
-            false,
-            true
-        ));
+        $rotatingFileHandler->setFormatter(new LineFormatter(null, null, false, true));
 
         $this->addHandler($rotatingFileHandler);
 
@@ -93,12 +81,7 @@ final class LoggerFactory
     {
         /** @phpstan-ignore-next-line */
         $streamHandler = new StreamHandler('php://output', $level ?? $this->level);
-        $streamHandler->setFormatter(new LineFormatter(
-            null,
-            null,
-            false,
-            true
-        ));
+        $streamHandler->setFormatter(new LineFormatter(null, null, false, true));
 
         $this->addHandler($streamHandler);
 

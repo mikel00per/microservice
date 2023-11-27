@@ -6,6 +6,4 @@ namespace Shared\Infrastructure\Slim\Exceptions;
 
 use Slim\Exception\HttpSpecializedException;
 
-final class HttpException extends HttpSpecializedException
-{
-}
+final class HttpException extends HttpSpecializedException {}
