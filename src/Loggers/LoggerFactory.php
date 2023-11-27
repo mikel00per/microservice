@@ -15,8 +15,8 @@ use Psr\Log\LoggerInterface;
 
 final class LoggerFactory
 {
-    private array $handlers;
-    private array $processors;
+    private array $handlers = [];
+    private array $processors = [];
 
     public function __construct(
         private readonly string           $path,
