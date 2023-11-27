@@ -1,16 +1,17 @@
 <?php
 
-namespace Shared\Infrastructure\Slim\Tests;
+namespace Tests\Shared\Infrastructure\Slim;
 
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Selective\TestTrait\Traits\HttpTestTrait;
-use Shared\Infrastructure\Settings\Settings;
+use Shared\Infrastructure\Settings\InMemorySettings;
 use Shared\Infrastructure\Settings\SettingsInterface;
 use Shared\Infrastructure\Slim\MicroserviceSlim;
 use Shared\Infrastructure\Slim\MicroserviceSlimInterface;
-use Shared\Infrastructure\Slim\Tests\Utils\TestCase;
+use Tests\Shared\Infrastructure\Slim\Utils\TestCase;
+
 
 final class MicroserviceSlimTest extends TestCase
 {
@@ -29,7 +30,7 @@ final class MicroserviceSlimTest extends TestCase
      */
     public function testGetSettings(): void
     {
-        $expected = Settings::class;
+        $expected = InMemorySettings::class;
         $actual = $this->microservice->getContainer()->get(SettingsInterface::class);
 
         $this->assertInstanceOf($expected, $actual);
@@ -48,7 +49,7 @@ final class MicroserviceSlimTest extends TestCase
      * @throws NotFoundExceptionInterface
      * @throws Exception
      */
-    protected function setUp(): void
+    public function setUp(): void
     {
         parent::setUp();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Shared\Infrastructure\Slim\Tests\Utils;
+namespace Tests\Shared\Infrastructure\Slim\Utils;
 
 use Exception;
 use PHPUnit\Framework\TestCase as UnitTestCase;
@@ -18,7 +18,7 @@ class TestCase extends UnitTestCase
      */
     protected function setUp(): void
     {
-        $container = ContainerFactory::buildContainer(__DIR__ . '/../../config/settings.php');
+        $container = ContainerFactory::create(__DIR__ . '/../../config/settings.php');
         $this->setUpContainer($container);
     }
 }
