@@ -25,7 +25,7 @@ return [
         $microservice = new MicroserviceSlim($container);
 
         // Register routes
-        (require $settings->get('router.definition'))($microservice);
+            (require $settings->get('router.definition'))($microservice);
 
         // Register middleware
         (require $settings->get('middlewares.definition'))($microservice);
