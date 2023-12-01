@@ -21,7 +21,7 @@ $settings['microservice_version'] = (string) getenv('MICROSERVICE_VERSION');
 # Container
 $settings['di']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_CONTAINER_DEFINITIONS'));
 $settings['di']['auto_wires']['path'] = "$rootPath/" . ((string) getenv('PATH_AUTO_WIRES'));
-$settings['di']['compiled_passes']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILER_PASSES_DEFINITION'));
+$settings['di']['compiler_passes']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILER_PASSES_DEFINITION'));
 $settings['di']['auto_wires']['enabled'] = ((bool) getenv('ENABLE_AUTO_WIRES'));
 $settings['di']['attributes']['enabled'] = ((bool) getenv('ENABLE_ATTRIBUTES'));
 $settings['di']['cache']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILED_CONTAINER'));
