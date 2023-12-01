@@ -13,22 +13,19 @@ $settings['configPath'] = $rootPath . '/config/';
 $settings['tmpPath'] = $rootPath . '/tmp/';
 $settings['cachePath'] = $rootPath . '/tmp/cache/';
 
-# Environment
-$settings['environment'] = (string) getenv('ENVIRONMENT');
-
-# Container
-$settings['di']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_CONTAINER_DEFINITIONS'));
-$settings['di']['auto_wires']['path'] = "$rootPath/" . ((string) getenv('PATH_AUTO_WIRES'));
-$settings['di']['compiled_passes']['path'] = "$rootPath/" . ((string) getenv('PATH_PASSES_DEFINITION'));
-$settings['di']['auto_wires']['enabled'] = ((bool) getenv('ENABLE_AUTO_WIRES'));
-$settings['di']['attributes']['enabled'] = ((bool) getenv('ENABLE_ATTRIBUTES'));
-$settings['di']['cache']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILED_CONTAINER'));
-$settings['di']['cache']['resolver']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILED_RESOLVER'));
-
 # Microservice
 $settings['environment'] = (string) getenv('ENVIRONMENT');
 $settings['microservice_name'] = (string) getenv('MICROSERVICE_NAME');
 $settings['microservice_version'] = (string) getenv('MICROSERVICE_VERSION');
+
+# Container
+$settings['di']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_CONTAINER_DEFINITIONS'));
+$settings['di']['auto_wires']['path'] = "$rootPath/" . ((string) getenv('PATH_AUTO_WIRES'));
+$settings['di']['compiled_passes']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILER_PASSES_DEFINITION'));
+$settings['di']['auto_wires']['enabled'] = ((bool) getenv('ENABLE_AUTO_WIRES'));
+$settings['di']['attributes']['enabled'] = ((bool) getenv('ENABLE_ATTRIBUTES'));
+$settings['di']['cache']['container']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILED_CONTAINER'));
+$settings['di']['cache']['resolver']['path'] = "$rootPath/" . ((string) getenv('PATH_COMPILED_RESOLVER'));
 
 // Logger settings
 $settings['logger']['name'] = (string) getenv('LOGGER_NAME');
