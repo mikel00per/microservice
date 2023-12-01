@@ -47,7 +47,7 @@
 
         <env name="COMPILE_ROUTES" value="1"/>
         <env name="PATH_ROUTES_DEFINITION" value="config/routes.php"/>
-        <env name="PATH_ROUTES_CACHE" value="tmp/cache/router/routes.php"/>
+        <env name="PATH_ROUTES_CACHE" value="tmp/cache/routes.php"/>
         <env name="PATH_MIDDLEWARES_DEFINITION" value="config/middlewares.php"/>
 
         <env name="LOGGER_NAME" value="micro_logger"/>
