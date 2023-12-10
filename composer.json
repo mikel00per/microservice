@@ -27,19 +27,19 @@
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
-        "mikelooper/container-settings": "^0.0.1",
-        "mikelooper/ddd-cqrs": "^0.0.3",
-        "fig/http-message-util": "^1.1",
-        "monolog/monolog": "^2.8",
-        "nyholm/psr7": "^1.5",
-        "nyholm/psr7-server": "^1.0",
-        "selective/test-traits": "^4.1",
-        "slim/slim": "^4.11"
+        "mikelooper/container-settings": "^0",
+        "mikelooper/ddd-cqrs": "^0",
+        "fig/http-message-util": "^1",
+        "monolog/monolog": "^2",
+        "nyholm/psr7": "^1",
+        "nyholm/psr7-server": "^1",
+        "selective/test-traits": "^4",
+        "slim/slim": "^4"
     },
     "require-dev": {
-        "mikelooper/code-style": "^0.0.2",
-        "phpunit/phpunit": "^10.4",
-        "vimeo/psalm": "^5.15"
+        "mikelooper/code-style": "^0",
+        "phpunit/phpunit": "^10",
+        "vimeo/psalm": "^5"
     },
     "scripts": {
         "test": [
