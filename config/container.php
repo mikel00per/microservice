@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Doctrine\ORM\EntityManager;
+use Shared\Infrastructure\Doctrine\DoctrineEntityManagerFactory;
+use Shared\Infrastructure\Environment\Environment;
 use Shared\Infrastructure\Settings\SettingsInterface;
 use Shared\Infrastructure\Slim\Handlers\HttpErrorHandler;
 use Shared\Infrastructure\Slim\MicroserviceSlim;
@@ -82,5 +85,16 @@ return [
         $errorMiddleware->setDefaultErrorHandler($httpErrorHandler);
 
         return $errorMiddleware;
+    },
+    EntityManager::class => static function (ContainerInterface $container) {
+        $settings = $container->get(SettingsInterface::class);
+
+        return DoctrineEntityManagerFactory::create(
+            parameters: $settings->get('doctrine.database'),
+            contextPrefixes: [],
+            isDevMode: $settings->get('environment') === Environment::DEVELOP->value,
+            schemaFile: $settings->get('doctrine.schema'),
+            dbalCustomTypesClasses: []
+        );
     }
 ];
