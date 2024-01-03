@@ -7,6 +7,7 @@ $settings = [];
 
 # Paths
 $rootPath = dirname(__DIR__);
+$rootNamespace = "Shared\\Infrastructure\\Slim\\";
 $settings['rootPath'] = $rootPath;
 $settings['rootNamespace'] = "Shared\\Infrastructure\\Slim\\";
 $settings['configPath'] = $rootPath . '/config/';
@@ -33,6 +34,19 @@ $settings['logger']['path'] = "$rootPath/" . ((string) getenv('LOGGER_PATH'));
 $settings['logger']['filename'] = 'microservice.log';
 $settings['logger']['level'] = (int) getenv('LOGGER_LEVEL');
 $settings['logger']['file_permission'] = 0775;
+
+// Database
+$settings['doctrine']['database']['driver'] = (string) getenv('DATABASE_DRIVER');
+$settings['doctrine']['database']['host'] = (string) getenv('DATABASE_HOST');
+$settings['doctrine']['database']['port'] = (string) getenv('DATABASE_PORT');
+$settings['doctrine']['database']['dbname'] = (string) getenv('DATABASE_NAME');
+$settings['doctrine']['database']['charset'] = (string) getenv('DATABASE_CHARSET');
+$settings['doctrine']['database']['user'] = (string) getenv('DATABASE_USER');
+$settings['doctrine']['database']['password'] = (string) getenv('DATABASE_PASSWORD');
+$settings['doctrine']['schema'] = "$rootPath/" . ((string) getenv('DATABASE_SCHEMA'));
+$settings['doctrine']['migrations']['namespace'] = $rootNamespace . ((string) getenv('MIGRATIONS_NAMESPACE'));
+$settings['doctrine']['migrations']['path'] = ((string) getenv('MIGRATIONS_PATH'));
+$settings['doctrine']['migrations']['table'] = ((string) getenv('MIGRATIONS_TABLE'));
 
 # Middlewares
 $settings['middlewares']['definition'] = "$rootPath/" . ((string) getenv('PATH_MIDDLEWARES_DEFINITION'));
