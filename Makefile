@@ -29,10 +29,10 @@ stop: ##@Container Stop php container
 destroy: ##@Container Remove all data related with php container
 	docker compose -f docker-compose.yml down --rmi all
 
-shell: ##@Container SHH in container
+shell: ##@Container SSH in container
 	docker compose -f docker-compose.yml exec php /bin/bash
 
-logs: ##@Container Show logs in container
+logs: ##@Container SSH logs in container
 	docker compose -f docker-compose.yml logs
 
 lint: ##@Style Show style errors
