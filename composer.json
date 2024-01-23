@@ -42,9 +42,6 @@
         "phpunit/phpunit": "^10",
         "vimeo/psalm": "^5"
     },
-    "bin": [
-        "../php-persistence/bin/doctrine"
-    ],
     "scripts": {
         "test": [
             "@analyze",
