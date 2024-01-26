@@ -33,7 +33,7 @@ final class LoggerFactory
             return $this->testLogger;
         }
 
-        $logger = new Logger($name ?: uniqid('logger', true));
+        $logger = new Logger($name ?? uniqid('logger', true));
 
         foreach ($this->processors as $processor) {
             $logger->pushProcessor($processor);
