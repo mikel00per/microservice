@@ -9,6 +9,7 @@ SECURITY.md        export-ignore
 docker-compose.yml export-ignore
 tests              export-ignore
 tools              export-ignore
+config             export-ignore
 
 # Auto detect text files and perform LF normalization
 * text=auto
