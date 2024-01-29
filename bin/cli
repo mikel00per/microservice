@@ -3,6 +3,7 @@
 <?php
 
 use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Tools\Console\Command\ReservedWordsCommand;
 use Doctrine\DBAL\Tools\Console\Command\RunSqlCommand;
 use Doctrine\Migrations\Configuration\Configuration;
 use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
@@ -29,7 +30,11 @@ use Doctrine\ORM\Tools\Console\Command\ClearCache\MetadataCommand;
 use Doctrine\ORM\Tools\Console\Command\ClearCache\QueryCommand;
 use Doctrine\ORM\Tools\Console\Command\ClearCache\QueryRegionCommand;
 use Doctrine\ORM\Tools\Console\Command\ClearCache\ResultCommand;
+use Doctrine\ORM\Tools\Console\Command\ConvertDoctrine1SchemaCommand;
+use Doctrine\ORM\Tools\Console\Command\EnsureProductionSettingsCommand;
+use Doctrine\ORM\Tools\Console\Command\GenerateEntitiesCommand;
 use Doctrine\ORM\Tools\Console\Command\GenerateProxiesCommand;
+use Doctrine\ORM\Tools\Console\Command\GenerateRepositoriesCommand;
 use Doctrine\ORM\Tools\Console\Command\InfoCommand;
 use Doctrine\ORM\Tools\Console\Command\MappingDescribeCommand;
 use Doctrine\ORM\Tools\Console\Command\RunDqlCommand;
@@ -102,6 +107,8 @@ try {
         new SyncMetadataCommand($dependencyFactory),
         new UpToDateCommand($dependencyFactory),
         new VersionCommand($dependencyFactory),
+        // DBAL Commands
+        new ReservedWordsCommand($connectionProvider),
         new RunSqlCommand($connectionProvider),
         // ORM Commands
         new CollectionRegionCommand($singleManagerProvider),
@@ -113,7 +120,12 @@ try {
         new CreateCommand($singleManagerProvider),
         new UpdateCommand($singleManagerProvider),
         new DropCommand($singleManagerProvider),
+        new EnsureProductionSettingsCommand($singleManagerProvider),
+        new ConvertDoctrine1SchemaCommand(),
+        new GenerateRepositoriesCommand($singleManagerProvider),
+        new GenerateEntitiesCommand($singleManagerProvider),
         new GenerateProxiesCommand($singleManagerProvider),
+        //new ConvertMappingCommand($singleManagerProvider),
         new RunDqlCommand($singleManagerProvider),
         new ValidateSchemaCommand($singleManagerProvider),
         new InfoCommand($singleManagerProvider),
