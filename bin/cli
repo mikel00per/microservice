@@ -9,6 +9,7 @@ use Doctrine\Migrations\Configuration\Configuration;
 use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
 use Doctrine\Migrations\Configuration\Migration\ExistingConfiguration;
 use Doctrine\Migrations\DependencyFactory;
+use Doctrine\Migrations\Exception\MigrationException;
 use Doctrine\Migrations\Metadata\Storage\TableMetadataStorageConfiguration;
 use Doctrine\Migrations\Tools\Console\Command\CurrentCommand;
 use Doctrine\Migrations\Tools\Console\Command\DiffCommand;
@@ -45,6 +46,7 @@ use Doctrine\ORM\Tools\Console\Command\ValidateSchemaCommand;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\ConnectionFromManagerProvider;
 use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use Shared\Infrastructure\DependencyInjection\ContainerFactory;
 use Shared\Infrastructure\Settings\SettingsInterface;
@@ -62,8 +64,36 @@ try {
 
     $container = ContainerFactory::create($settingsArray);
     $settings = $container->get(SettingsInterface::class);
-    $entityManager = $container->get(EntityManager::class);
 
+    $serviceName = $settings->get('MICROSERVICE');
+    $serviceVersion = $settings->get('VERSION');
+
+    $cli = new Application("$serviceName CLI", $serviceVersion);
+    $cli->setCatchExceptions(true);
+
+    $cli->addCommands([
+        // Migrations commands
+        getMigrationCommands($settings),
+        // DBAL Commands
+        getDbalCommands($container),
+        // ORM Commands
+        getDoctrineCommands($container),
+        // Service commands
+        getServiceCommandLines($container),
+    ]);
+
+    $cli->run();
+
+} catch (Throwable $e) {
+    echo(json_encode(['message' => $e->getMessage(), 'trace' => $e->getTrace()], JSON_THROW_ON_ERROR));
+}
+
+
+/**
+ * @throws MigrationException|\Doctrine\DBAL\Exception
+ */
+function getMigrationCommands(SettingsInterface $settings): array
+{
     $connection = DriverManager::getConnection($settings->get('orm.database'));
 
     $configuration = new Configuration();
@@ -73,27 +103,21 @@ try {
         $settings->get('orm.migrations.path')
     );
 
-    $configuration->setAllOrNothing(true);
-    $configuration->setCheckDatabasePlatform(false);
-
     $storageConfiguration = new TableMetadataStorageConfiguration();
     $storageConfiguration->setTableName($settings->get('orm.migrations.table'));
 
+    $configuration->setTransactional(true);
+    $configuration->setAllOrNothing(true);
+    $configuration->setCheckDatabasePlatform(false);
     $configuration->setMetadataStorageConfiguration($storageConfiguration);
+    $configuration->setMigrationsAreOrganizedByYearAndMonth();
 
     $dependencyFactory = DependencyFactory::fromConnection(
         new ExistingConfiguration($configuration),
         new ExistingConnection($connection)
     );
 
-    $singleManagerProvider = new SingleManagerProvider($entityManager);
-    $connectionProvider = new ConnectionFromManagerProvider($singleManagerProvider);
-
-    $cli = new Application('Doctrine Migrations');
-    $cli->setCatchExceptions(true);
-
-    $cli->addCommands([
-        // Migrations commands
+    return [
         new CurrentCommand($dependencyFactory),
         new DiffCommand($dependencyFactory),
         new DumpSchemaCommand($dependencyFactory),
@@ -107,10 +131,37 @@ try {
         new SyncMetadataCommand($dependencyFactory),
         new UpToDateCommand($dependencyFactory),
         new VersionCommand($dependencyFactory),
-        // DBAL Commands
+    ];
+}
+
+/**
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+function getDbalCommands(ContainerInterface $container): array
+{
+    $entityManager = $container->get(EntityManager::class);
+
+    $singleManagerProvider = new SingleManagerProvider($entityManager);
+    $connectionProvider = new ConnectionFromManagerProvider($singleManagerProvider);
+
+    return [
         new ReservedWordsCommand($connectionProvider),
         new RunSqlCommand($connectionProvider),
-        // ORM Commands
+    ];
+}
+
+/**
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+function getDoctrineCommands(ContainerInterface $container): array
+{
+    $entityManager = $container->get(EntityManager::class);
+
+    $singleManagerProvider = new SingleManagerProvider($entityManager);
+
+    return [
         new CollectionRegionCommand($singleManagerProvider),
         new EntityRegionCommand($singleManagerProvider),
         new MetadataCommand($singleManagerProvider),
@@ -130,10 +181,14 @@ try {
         new ValidateSchemaCommand($singleManagerProvider),
         new InfoCommand($singleManagerProvider),
         new MappingDescribeCommand($singleManagerProvider),
-    ]);
+    ];
+}
 
-    $cli->run();
-
-} catch (NotFoundExceptionInterface|ContainerExceptionInterface|Exception $e) {
-    echo($e->getMessage());
+/**
+ * @throws ContainerExceptionInterface
+ * @throws NotFoundExceptionInterface
+ */
+function getServiceCommandLines(ContainerInterface $container): array
+{
+    return $container->has('command-lines') ? $container->get('command-lines') : [];
 }
