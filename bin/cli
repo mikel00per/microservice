@@ -48,6 +48,7 @@ use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Shared\Infrastructure\DependencyInjection\CompilerPassesType;
 use Shared\Infrastructure\DependencyInjection\ContainerFactory;
 use Shared\Infrastructure\Settings\SettingsInterface;
 use Symfony\Component\Console\Application;
@@ -190,5 +191,7 @@ function getDoctrineCommands(ContainerInterface $container): array
  */
 function getServiceCommandLines(ContainerInterface $container): array
 {
-    return $container->has('command-lines') ? $container->get('command-lines') : [];
+    $key = CompilerPassesType::COMMAND_LINES->value;
+
+    return $container->has($key) ? $container->get($key) : [];
 }
