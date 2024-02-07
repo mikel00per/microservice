@@ -80,7 +80,7 @@ try {
         // ORM Commands
         getDoctrineCommands($container),
         // Service commands
-        getServiceCommandLines($container),
+        ...getServiceCommandLines($container),
     ]);
 
     $cli->run();
