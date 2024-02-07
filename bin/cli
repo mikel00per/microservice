@@ -66,8 +66,8 @@ try {
     $container = ContainerFactory::create($settingsArray);
     $settings = $container->get(SettingsInterface::class);
 
-    $serviceName = $settings->get('MICROSERVICE');
-    $serviceVersion = $settings->get('VERSION');
+    $serviceName = $settings->get('microservice.name');
+    $serviceVersion = $settings->get('microservice.version');
 
     $cli = new Application("$serviceName CLI", $serviceVersion);
     $cli->setCatchExceptions(true);
