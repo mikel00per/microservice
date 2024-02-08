@@ -74,11 +74,11 @@ try {
 
     $cli->addCommands([
         // Migrations commands
-        getMigrationCommands($settings),
+        ...getMigrationCommands($settings),
         // DBAL Commands
-        getDbalCommands($container),
+        ...getDbalCommands($container),
         // ORM Commands
-        getDoctrineCommands($container),
+        ...getDoctrineCommands($container),
         // Service commands
         ...getServiceCommandLines($container),
     ]);
