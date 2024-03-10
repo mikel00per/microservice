@@ -8,11 +8,11 @@ final readonly class ConfigurationRabbit
 {
     public function __construct(
         private string $exchangeName,
-        private string $cliPathFile,
-        private array $subscribers,
         private string $supervisorPath,
         private string $eventsToProcessAtTime,
         private string $numberOfProcessesPerSubscriber,
+        private string $cliPathFile,
+        private array $subscribers,
     ) {}
 
     public function exchangeName(): string
