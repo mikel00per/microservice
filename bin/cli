@@ -48,6 +48,7 @@ use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
+use Psr\Log\LoggerInterface;
 use Shared\Infrastructure\DependencyInjection\CompilerPassesType;
 use Shared\Infrastructure\DependencyInjection\ContainerFactory;
 use Shared\Infrastructure\Settings\SettingsInterface;
@@ -86,7 +87,12 @@ try {
     $cli->run();
 
 } catch (Throwable $e) {
-    echo(json_encode(['message' => $e->getMessage(), 'trace' => $e->getTrace()], JSON_THROW_ON_ERROR));
+    $logger = $container->get(LoggerInterface::class);
+
+    $logger->error($e->getMessage(), [
+        'file' => "{$e->getFile()}:{$e->getLine()}",
+        'trace' => $e->getTrace()
+    ]);
 }
 
 
