@@ -26,6 +26,7 @@
     },
     "require": {
         "php": "^8.2",
+        "ext-amqp": "*",
         "ext-pdo": "*",
         "fig/http-message-util": "^1",
         "mikelooper/container-settings": "^0",
