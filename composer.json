@@ -30,6 +30,7 @@
         "ext-pdo": "*",
         "fig/http-message-util": "^1",
         "mikelooper/container-settings": "^0",
+        "mikelooper/criteria": "^0",
         "mikelooper/ddd-cqrs": "^0",
         "mikelooper/persistence": "^0",
         "monolog/monolog": "^2",
