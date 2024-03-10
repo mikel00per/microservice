@@ -58,7 +58,7 @@ final class GenerateSupervisorRabbitMqConsumerFilesCommand extends Command imple
     {
         return <<<EOF
             [program:auth_{queue_name}]
-            command      = {cliPathFile} auth:rabbitmq:consume {queue_name} {events_to_process}
+            command      = {cliPathFile} rabbitmq:consume {queue_name} {events_to_process}
             process_name = %(program_name)s_%(process_num)02d
             numprocs     = {processes}
             startsecs    = 1
@@ -66,7 +66,7 @@ final class GenerateSupervisorRabbitMqConsumerFilesCommand extends Command imple
             exitcodes    = 2
             stopwaitsecs = 300
             autostart    = true
-            EOF;
+        EOF;
     }
 
     private function fileName(string $queue): string
