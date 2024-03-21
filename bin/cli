@@ -7,6 +7,7 @@ use Doctrine\DBAL\Tools\Console\Command\ReservedWordsCommand;
 use Doctrine\DBAL\Tools\Console\Command\RunSqlCommand;
 use Doctrine\Migrations\Configuration\Configuration;
 use Doctrine\Migrations\Configuration\Connection\ExistingConnection;
+use Doctrine\Migrations\Configuration\EntityManager\ExistingEntityManager;
 use Doctrine\Migrations\Configuration\Migration\ExistingConfiguration;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Exception\MigrationException;
@@ -75,7 +76,7 @@ try {
 
     $cli->addCommands([
         // Migrations commands
-        ...getMigrationCommands($settings),
+        ...getMigrationCommands($container),
         // DBAL Commands
         ...getDbalCommands($container),
         // ORM Commands
@@ -95,13 +96,12 @@ try {
     ]);
 }
 
-
 /**
- * @throws MigrationException|\Doctrine\DBAL\Exception
+ * @throws NotFoundExceptionInterface|ContainerExceptionInterface|MigrationException
  */
-function getMigrationCommands(SettingsInterface $settings): array
+function getMigrationCommands(ContainerInterface $container): array
 {
-    $connection = DriverManager::getConnection($settings->get('orm.database'));
+    $settings = $container->get(SettingsInterface::class);
 
     $configuration = new Configuration();
 
@@ -119,9 +119,10 @@ function getMigrationCommands(SettingsInterface $settings): array
     $configuration->setMetadataStorageConfiguration($storageConfiguration);
     $configuration->setMigrationsAreOrganizedByYearAndMonth();
 
-    $dependencyFactory = DependencyFactory::fromConnection(
+    $dependencyFactory = DependencyFactory::fromEntityManager(
         new ExistingConfiguration($configuration),
-        new ExistingConnection($connection)
+        new ExistingEntityManager($container->get(EntityManager::class)),
+        $container->get(LoggerInterface::class)
     );
 
     return [
