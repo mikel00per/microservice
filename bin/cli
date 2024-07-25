@@ -88,16 +88,21 @@ try {
     $cli->run();
 
 } catch (Throwable $e) {
-    $logger = $container->get(LoggerInterface::class);
 
-    $logger->error($e->getMessage(), [
+    echo json_encode([
+        'message' => $e->getMessage(),
+        'code' => $e->getCode(),
         'file' => "{$e->getFile()}:{$e->getLine()}",
-        'trace' => $e->getTrace()
-    ]);
+        'trace' => $e->getTrace(),
+    ], JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
+
+    exit("Unable run CLI");
 }
 
 /**
- * @throws NotFoundExceptionInterface|ContainerExceptionInterface|MigrationException
+ * @throws NotFoundExceptionInterface
+ * @throws ContainerExceptionInterface
+ * @throws MigrationException
  */
 function getMigrationCommands(ContainerInterface $container): array
 {
